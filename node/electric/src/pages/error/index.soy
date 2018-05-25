@@ -1,0 +1,22 @@
+---
+title: "Error"
+description: "There was an error"
+url: "/error/not-found.html"
+hidden: true
+layout: false
+---
+
+{namespace errorPage}
+
+/**
+ */
+{template .render}
+  {@param page: ?}
+
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="refresh" content="0; URL='{$page.url}'">
+    </head>
+  </html>
+{/template}
