@@ -21,4 +21,9 @@ export const controller = app => {
     const siteJson = fs.readFileSync(path.join(electricPath, 'site.json'));
     res.json(JSON.parse(siteJson.toString()));
   });
+
+  app.use('/[^ ]*', (req, res, next) => {
+    res.status(404);
+    res.sendFile(path.join(electricPath, 'error/not-found.html'));
+  });
 };
