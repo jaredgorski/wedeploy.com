@@ -1,0 +1,29 @@
+{namespace error}
+
+/**
+ */
+{template .render}
+  {@param page: ?}
+
+  <div class="static-page">
+    <div class="suggestion error">
+      <svg class="logo"><use xlink:href="/images/error/sprite.svg#logo" /></svg>
+      <a class="link welcome-link" href="/">Go to home <svg class="link-icon --right"><use xlink:href="/images/error/sprite.svg#arrow-right-suggestion" /></svg></a>
+      <img id="layer1" class="layer" src="/images/error/illustration-layer1.png"/>
+      <img id="layer2" class="layer" src="/images/error/illustration-layer2.png"/>
+      <img id="layer3" class="layer" src="/images/error/illustration-layer3.png"/>
+      <img id="layer4" class="layer" src="/images/error/illustration-layer4.png"/>
+      <h1 class="error-title">{$page.code}</h1>
+      <h3 class="error-subtitle">{$page.description}</h3>
+      {if $page.code == '500'}
+        <p class="error-description">Please try again later or <a class="link" href="javascript:Intercom('show')">contact support</a> if this issue continues.</p>
+      {else}
+        <p class="error-description">{$page.subtitle}</p>
+      {/if}
+    </div>
+    <footer class="error-footer">
+      <h4 class="error-footer-title">WeDeploy</h4>
+      <p class="error-footer-subtitle">Copyright &copy; 2018 Liferay, Inc.</p>
+    </footer>
+  </div>
+{/template}
