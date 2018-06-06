@@ -35,20 +35,35 @@ export default class Header extends Component {
         }
       }
 
-      const $pricingTarget = event.target.closest('[href="#pricing"]');
-
-      if ($pricingTarget) {
+      function collapseNav() {
         const $list = document.querySelector('.nav-list');
         const $toggle = document.querySelector('.nav-toggle');
 
         document.documentElement.setAttribute('data-expanded', false);
-
+        $toggle.setAttribute('aria-expanded', false);
+        $list.setAttribute('aria-expanded', false);
         $toggle.parentNode.setAttribute('aria-expanded', false);
-
         $list.parentNode.setAttribute('aria-expanded', false);
-
         $list.parentNode.removeAttribute('inert');
       }
+
+      const $pricingTarget = event.target.closest('[href="#pricing"]');
+
+      if ($pricingTarget) {
+        collapseNav();
+      }
+
+      const $canvasTarget = event.target.closest('[data-expanded="true"]');
+      const navArea = document.getElementById('nav-list').getBoundingClientRect();
+
+      if ($canvasTarget) {
+        if (navArea.height > 0) {
+          if (event.offsetY > navArea.height) {
+            collapseNav();
+          }
+        }
+      }
+
     });
   }
 }
